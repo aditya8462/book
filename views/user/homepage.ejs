@@ -1,0 +1,119 @@
+<html>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".carousel");
+      var instances = M.Carousel.init(elems);
+    });
+    
+    var instance = M.Carousel.init({
+      fullWidth: true,
+      indicators: true,
+    });
+  </script>
+  <body>
+    <nav style="background-color: #03228f">
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left">
+          <li>
+            <a href="#"
+              ><img src="/images/logo.jpg" style="padding:11px; height: 62px;width: 120px;"
+            /></a>
+          </li>
+          <% data.forEach((item,index)=>{ %>
+          <li>
+            <a class="publication" pid="<%=item.publicationid%>"
+              ><%=item.publicationname%></a>
+          </li>
+          <% }) %>
+          <li>
+            <div
+              class="col s12"
+              style="
+                display: flex;
+                justify-content: center;
+                width: 206px;
+                margin-left: 223px;
+              "
+            >
+              <i class="material-icons prefix" 
+                >search</i
+              >
+              <input
+               
+                type="text"
+                class="validate"
+                placeholder="Search..."
+                id="search"
+                name="search"
+              />
+            </div>
+          </li>
+          <li>
+            <a href="#"
+              ><span class="material-icons" style="line-height: 2.5">
+                account_circle
+              </span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><span class="material-icons" style="line-height: 2.5">
+                favorite_border
+              </span></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><span class="material-icons" style="line-height: 2.5">
+                shopping_bag
+              </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="bookcategory"></div>
+     <div id="categorywriter"></div>
+
+    <div class="carousel carousel-slider" style="height: 90%;">
+      <a class="carousel-item" href="#one!" 
+        ><img
+          src="https://d2g9wbak88g7ch.cloudfront.net/promotionimages/8_bigdiscount.jpg" style="height: 700px;"
+      /></a>
+      <a class="carousel-item" href="#two!"
+        ><img
+          src="https://d2g9wbak88g7ch.cloudfront.net/promotionimages/2_discountoffer.jpg"style="height: 700px;"
+      /></a>
+      <a class="carousel-item" href="#three!"style="height: 700px;"
+        ><img
+          src="https://d2g9wbak88g7ch.cloudfront.net/promotionimages/3_newoffer.jpg"
+      /></a>
+    </div>
+      <div id="book" style="display: flex; flex-wrap: wrap;"></div>
+  </body>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="/javascripts/home.js"></script>
+</html>

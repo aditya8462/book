@@ -1,0 +1,113 @@
+<html>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+
+        
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+    </script>
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var elems = document.querySelectorAll(".materialboxed");
+          var instances = M.Materialbox.init(elems);
+        });
+        function showImage(event) {
+          img.src=URL.createObjectURL(event.target.files[0])
+          img.width=200
+        }
+      </script>
+            <!--Import Google Icon Font-->
+     
+  
+    <style>
+        .mainconatiner{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            height:100vh;
+            width:100vw
+        }
+        .subcontainer{
+            background:#03228f;
+            border-radius: 10px;
+            width:50%;
+        }
+        .heading{
+            font-weight:bold;
+            color: '#2f3640';
+            font-size: 30px;
+            text-align: center;
+            color: #fff;
+       
+        }
+        .msgStyle{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+    </style>
+    <div class="mainconatiner">
+        <div class="subcontainer">
+          <form action="/bookcategory/editpicture" method="post" enctype="multipart/form-data" >
+            <div class="heading">
+                Edit Picture
+            </div>
+            
+            <div  class="row">
+                <div class="input-field col s12">
+                    <input id="bookcategoryid" name="bookcategoryid" style="color: #fff;" type="text" class="validate" readonly value="<%=data.bookcategoryid%>">
+                    <label for="categoryid">Bookcategory Id</label>
+                    
+                  </div>
+                    <div class="input-field col s12  " style="display:flex ;justify-content:center ;">
+                        <img src="/images/<%=data.picture%>" class="materialboxed" width="200 "  />
+                        </div>
+                        <div class="row">
+                            <div class="file-field input-field col s6">
+                              <div class="btn" style="background-color:#fff;color:#007bff">
+                                <span >File</span>
+                                <input  type="file" name="picture"  onchange="showImage(event)"/>
+                              </div>
+                              <div class="file-path-wrapper">
+                                <input style="color:#fff" class="file-path validate" type="text" />
+                              </div>
+                            </div>
+                            <div class="col s6">
+                              <img id="img" class="materialboxed" />
+                            </div>
+                          </div>
+                        <div class="input-field col s12 center">
+                            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#fff;color:#007bff">Edit
+                                <i class="material-icons right">edit</i>
+                              </button>
+                            </div>
+                           
+                            </div>
+                          </form>    
+                          
+            </div>
+          
+        </div>
+        
+    </div>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+   var elems = document.querySelectorAll('.materialboxed');
+   var instances = M.Materialbox.init(elems);
+ });
+   </script>
+</html>

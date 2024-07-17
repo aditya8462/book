@@ -1,0 +1,274 @@
+<html>
+  <!-- Compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!-- Cnompiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.getJSON("/publication/displayJSON", { ajax: true }, function (result) {
+        console.log(result);
+        if (result.status) {
+          result.data.forEach((item, index) => {
+            $("#publicationid").append(
+              $("<option>").text(item.publicationname).val(item.publicationid)
+            );
+          });
+          $("select").formSelect();
+        }
+      });
+      $("#publicationid").change(function () {
+        $("#bookcategoryid").empty();
+        $("#bookcategoryid").append($("<option>").text("choose bookcategory"));
+        $.getJSON(
+          "/bookcategory/displayJSON",
+          { ajax: true, pid: $("#publicationid").val() },
+          function (result) {
+            if (result.status) {
+              result.data.forEach((item, index) => {
+                $("#bookcategoryid").append(
+                  $("<option>")
+                    .text(item.bookcategoryname)
+                    .val(item.bookcategoryid)
+                );
+              });
+              $("select").formSelect();
+            }
+          }
+        );
+      });
+      $("#bookcategoryid").change(function () {
+        $("#categorywriterid").empty();
+        $("#categorywriterid").append($("<option>").text("choose categorywriter"));
+        $.getJSON(
+          "/categorywriter/displayJSON",
+          { ajax: true, bid: $("#bookcategoryid").val() },
+          function (result) {
+            if (result.status) {
+              result.data.forEach((item, index) => {
+                $("#categorywriterid").append(
+                  $("<option>")
+                    .text(item.categorywritername)
+                    .val(item.categorywriterid)
+                );
+              });
+              $("select").formSelect();
+            }
+          }
+        );
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+    
+    $('.datepicker').datepicker();
+      });
+
+      $(document).ready(function(){
+       $('select').formSelect();
+      });  
+      </script>
+  <script>
+    $(document).ready(function () {
+      $("select").formSelect();
+    });
+  </script>
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var elems = document.querySelectorAll(".materialboxed");
+    var instances = M.Materialbox.init(elems);
+  });
+  function showImage(event) {
+    img.src=URL.createObjectURL(event.target.files[0])
+    img.width=200
+  }
+</script>
+  <style>
+    .maincontainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+    
+      width: 100vw;
+    }
+    .subcontainer {
+      background-color: #03228f;
+      border-radius: 10px;
+      width: 50%;
+    }
+    .heading {
+      font-weight: bold;
+      color: "#2f3640";
+      font-size: 30px;
+      text-align: center;
+      color:#fff;
+    }
+    .msgStyle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffff;
+    }
+  </style>
+  <div class="maincontainer">
+    <div class="subcontainer">
+      <form
+        action="/book/addbook"
+        method="post"
+        enctype="multipart/form-data"
+      >
+      <div class="heading"> Books Interface <a  href="/book/displaybook" target="mw" class="waves-effect waves-teal btn-flat" style="color: #fff;"><i class="material-icons right">add</i>List Book</a></div>
+       
+        <div class="row">
+          <div class="input-field col s4">
+            <select id="publicationid"  name="publicationid">
+              <option value="" disabled style="color: #fff;" selected>Choose your option</option>
+            </select>
+            <label>Publication</label>
+          </div>
+          <div class="input-field col s4">
+            <select id="bookcategoryid" name="bookcategoryid">
+              <option value="" disabled selected>Choose your option</option>
+            </select>
+            <label>Book Category</label>
+          </div>
+          <div class="input-field col s4">
+            <select id="categorywriterid" name="categorywriterid">
+              <option value="" disabled selected>Choose your option</option>
+            </select>
+            <label> Category Writer</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input
+              id="bookname"
+              name="bookname"
+              type="text"
+              class="validate"
+              style="color: #fff;"
+            />
+            <label for="bookname">Book Name</label>
+          </div>
+          <div class="input-field col s12">
+            <input
+              id="description"
+              name="description"
+              type="text"
+              class="validate"
+              style="color: #fff;"
+            />
+            <label for="description">Description</label>
+          </div>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">event</i>
+            <input id="launchedinyear" name="launchedinyear" type="text" class="datepicker">
+            <label for="launchedinyear">Launched Year</label>
+          </div>
+          <div class="input-field col s6">
+            <input
+              id="noofpages"
+              name="noofpages"
+              type="text"
+              class="validate"
+              style="color: #fff;"
+            />
+            <label for="noofpages">No. Of Pages</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="price" style="color: #fff;" name="price" type="text" class="validate" />
+            <label for="price">Price</label>
+          </div>
+          <div class="input-field col s4">
+            <input
+              id="offerprice"
+              name="offerprice"
+              type="text"
+              class="validate"
+              style="color: #fff;"
+            />
+            <label for="offerprice">offerprice</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="stock" name="stock" style="color: #fff;" type="text" class="validate" />
+            <label for="stock">Stock</label>
+          </div>
+          
+              <div class="row">
+                <div class="file-field input-field col s6">
+                  <div class="btn" style="background-color:#fff;color:#007bff">
+                    <span >File</span>
+                    <input  type="file" name="picture"  onchange="showImage(event)"/>
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input style="color:#fff" class="file-path validate" type="text" />
+                  </div>
+                </div>
+                <div class="col s6">
+                  <img id="img" class="materialboxed" />
+                </div>
+              </div>
+              <div class="input-field col s6">
+                <label>
+                  <input name="status" type="radio" value="available" />
+                  <span>Available</span>
+                </label>
+              </div>
+              <div class="input-field col s6">
+                <label>
+                  <input name="status" type="radio" value="not available" />
+                  <span>Not Available</span>
+                </label>
+              </div>
+           
+         
+        </div>
+        <div class="row">
+          <div class="input-field col s6 center">
+            <button
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+              style="background-color:#fff;color:#007bff"
+                
+            >
+              Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <div class="input-field col s6 center">
+            <button
+              class="btn waves-effect waves-light"
+              type="reset"
+              name="action"
+              style="background-color:#fff;color:#007bff"
+                
+            >
+              Reset
+              <i class="material-icons right">clear</i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="msgStyle" style="margin-bottom: 10px;color: #fff;font-size: 22px;" ><%=mesg%></div>
+    </div>
+  </div>
+
+  <!-- Compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+
+  <!-- Compiled and minified JavaScript -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

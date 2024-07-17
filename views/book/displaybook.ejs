@@ -1,0 +1,108 @@
+<html>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Cnompiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+       
+    </script>
+   
+          
+     
+    <style>
+        .maincontainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            
+            width:100vw
+        }
+        .subcontainer{
+            background-color:#03228f;
+            border-radius: 10px;
+        
+        }
+        .heading{
+            font-weight:bold;
+            color: '#2f3640';
+            font-size: 30px;
+            text-align: center;
+            color: #fff;
+
+            
+        }
+        .msgStyle{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+    </style>
+    <div class="maincontainer">
+        <div class="subcontainer">
+        <div class="heading">List Of Books <a  href="/book/" target="mw" class="waves-effect waves-teal btn-flat" style="color: #fff;display:flex;justify-content:right;padding-bottom: 5%;"><i class="material-icons">add</i>Add Book</a></div>
+        <div class="row">
+          <form action="/book/editbook" method="post" enctype="multipart/form-data">
+            <table class="highlight">
+                <thead>
+                  <tr>
+                      <th style="color: #fff;">Book Id</th>
+                      <th style="color: #fff;">Publication Id</th>
+                      <th style="color: #fff;">BookCategory Id</th>
+                      <th style="color: #fff;">Categorywriter Id</th>
+                      <th style="color: #fff;">Book Name</th>
+                      <th style="color: #fff;">Description</th>
+                      <th style="color: #fff;">Launched In Year</th>
+                      <th style="color: #fff;">No. Of Pages</th>
+                      <th style="color: #fff;">Price/OfferPrice</th>
+                      <th style="color: #fff;">Stock</th>
+                      <th style="color: #fff;">Picture</th>    
+                      <th style="color: #fff;">Status</th>
+                      <th style="color: #fff;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+               <% data.forEach((item,index)=>{%>
+              <tr>
+                <td style="color: #fff;"><%=item.bookid%></td>
+                <td style="color: #fff;"><%=item.publicationid%></td>
+                <td style="color: #fff;"><%=item.bookcategoryid%></td>
+                <td style="color: #fff;"><%=item.categorywriterid%></td>
+                <td style="color: #fff;"><%=item.bookname%></td>
+                <td style="color: #fff;"><%=item.description.slice(0,20)%></td>
+                <td style="color: #fff;"><%=item.launchedinyear%></td>
+                <td style="color: #fff;"><%=item.noofpages%></td>
+                <td style="color: #fff;"><%=item.price%>/<%=item.offerprice%></td>
+                <td style="color: #fff;"><%=item.stock%></td>
+                <td><a title="Edit"  style="color:#fff"  href="/book/displaypicture?aid=<%=item.bookid%>"><img src='/images/<%=item.picture%>' width='50px' height='20%'/></a></td>
+                <td style="color: #fff;"><%=item.status%></td>
+                <td><a title="Edit"  style="color:#fff"  href="/book/displaybyid?aid=<%=item.bookid%>"><span class="material-icons">
+                    edit
+                    </span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a title="Edit"  style="color:#fff"  href="/book/delete?aid=<%=item.bookid%>"><span class="material-icons">
+                    delete
+                        </span></a>
+                    </td>
+              </tr>
+              <% })%>
+                </tbody>
+                </table>
+ 
+                                  </form> 
+                             </div>    
+               
+                </div>
+                </div>
+                
+           
+    
+  
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+     </html>

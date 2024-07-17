@@ -1,0 +1,100 @@
+<html>
+  <!-- Compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <style>
+    .maincontainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: #fff;
+    }
+    .subcontainer {
+      width: 50%;
+      background-color: #03228f;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .heading {
+      font-size: 30px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      display:flex;
+      justify-content:space-between;
+      align-items: center;
+    }
+  </style>
+  <body style="margin: 0px">
+    <div class="maincontainer">
+      <div class="subcontainer">
+        <div class="heading">List Of Publication <a  href="/publication/" target="mw" class="waves-effect waves-teal btn-flat" style="color: #fff;"><i class="material-icons right">add</i>Add Publication</a></div>
+        <div class="row">
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th style="color: #fff;">ID</th>
+                <th style="color: #fff;">Name</th>
+                <th style="color: #fff;">Picture</th>
+                <th style="color: #fff;">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% data.forEach((item,index)=>{ %>
+              <tr>
+                <td style="color: #fff;"><%= item.publicationid %></td>
+                <td style="color: #fff;"><%= item.publicationname %></td>
+                <td>
+                  <a
+                    title="Edit"
+                    href="/publication/displaypicture?pid=<%= item.publicationid %>"
+                    style="color: #fff"
+                    >
+                    <img src="/images/<%= item.picture %>" width="100" />
+                  </a>
+                </td>
+                <td>
+                  <a
+                    title="Edit"
+                    href="/publication/displaybyid?pid=<%= item.publicationid %>"
+                    style="color: fff"
+                    ><span class="material-icons"> edit </span></a
+                  >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a
+                    title="Delete"
+                    href="/publication/delete?pid=<%= item.publicationid %>"
+                    style="color: fff"
+                  >
+                    <span class="material-icons"> delete </span>
+                  </a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

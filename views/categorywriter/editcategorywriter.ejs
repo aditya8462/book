@@ -1,0 +1,172 @@
+<html>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Cnompiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+       
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $.getJSON("/publication/displayJSON", { ajax: true }, function (result) {
+            console.log(result);
+            if (result.status) {
+              result.data.forEach((item, index) => {
+                $("#publicationid").append(
+                  $("<option>").text(item.publicationname).val(item.publicationid)
+                );
+              });
+              $("select").formSelect();
+            }
+          });
+    
+          setTimeout(() => {
+            // alert($("#bookcategoryid").val());
+            var urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams.get("wid"));
+            $.getJSON(
+              "/bookcategory/displayJSONbywriterid",
+              { ajax: true, wid: urlParams.get("wid") },
+              function (result) {
+                if (result.status) {
+                //   alert($("#bookcategoryid").val());
+                  result.data.forEach((item, index) => {
+                    $("#bookcategoryid").append(
+                      $(`<option>`)
+                        .text(item.bookcategoryname)
+                        .val(item.bookcategoryid)
+                    );
+                  });
+                  $("select").formSelect();
+                //   alert($("#bookcategoryid").val());
+                }
+              }
+            );
+          }, 500);
+    
+          $("#publicationid").change(function () {
+            $("#bookcategoryid").empty();
+            $("#bookcategoryid").append($("<option>").text("choose bookcategory"));
+            $.getJSON(
+              "/bookcategory/displayJSON",
+              { ajax: true, pid: $("#publicationid").val() },
+              function (result) {
+                if (result.status) {
+                  result.data.forEach((item, index) => {
+                    $("#bookcategoryid").append(
+                      $("<option>")
+                        .text(item.bookcategoryname)
+                        .val(item.bookcategoryid)
+                    );
+                  });
+                  $("select").formSelect();
+                }
+              }
+            );
+          });
+        });
+      </script>
+      
+      <script>
+        $(document).ready(function () {
+          $("select").formSelect();
+        });
+      </script>
+    
+   
+          
+     
+    <style>
+        .maincontainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            height:100vh;
+            width:100vw
+        }
+        .subcontainer{
+            background-color:#03228f;
+            border-radius: 10px;
+            width:50%;
+        }
+        .heading{
+            font-weight:bold;
+            color: '#2f3640';
+            font-size: 30px;
+            text-align: center;
+            color: #fff;
+            
+        }
+        .msgStyle{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+    </style>
+    <div class="maincontainer">
+        <div class="subcontainer">
+          <form action="/categorywriter/editcategorywriter" method="post" >
+            <div class="heading">
+            Edit CategoryWriter 
+            </div>
+            <div  class="row">
+              <div class="input-field col s12">
+                
+                <input id="categorywriterid" name="categorywriterid" type="text" class="validate" value="<%=data.categorywriterid%>" style="color: #fff;" readonly>
+                <label for="categorywriterid">CatgeoryWriter Id</label>
+                
+                </div>
+
+           <div  class="row">
+            <div class="input-field col s12">
+              <select id="publicationid" name="publicationid"  style="color: #fff;" value="<%= data.publicationid %>">
+                <option value="" disabled>Choose your option</option>
+              </select>
+              <label>Publication</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="bookcategoryid" name="bookcategoryid"  style="color: #fff;" value="<%= data.bookcategoryid %>">
+                  <option value="" disabled>Choose your option</option>
+                </select>
+                <label>Book Category</label>
+              </div>
+
+                
+        <div class="input-field col s12">
+            <input id="categorywritername" name="categorywritername" type="text" class="validate" style="color: #fff;" value="<%=data.categorywritername%>">
+                <label for="categorywritername">Categorywriter Name</label>
+              </div>
+                    <div class="input-field col s12">
+                      <textarea id="description" name="description" style="color: #fff;"  class="materialize-textarea"><%=data.description%></textarea>
+                      <label for="description">Description</label>
+                    </div>
+                            </div>
+                            <div  class="row" >
+                                <div class="input-field col s12 center">
+                                    <button style="background-color:#fff;color:#007bff"
+                                    class="btn waves-effect waves-light" type="submit" name="action">Edit
+                                        <i class="material-icons right">edit</i>
+                                      </button>
+                                    </div>
+                                     </div>
+        
+ 
+                                  </form> 
+                                 
+                </div>
+                </div>
+                
+           
+    
+  
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+     </html>
